@@ -151,6 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fill.cpp" />
+    <ClCompile Include="getMouseXYZ.cpp" />
+    <ClCompile Include="makeFigure.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
