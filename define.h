@@ -1,16 +1,19 @@
 #pragma once
-#define DEBUG_ON //デバッグ有りの時はON
-//#define DEBUG_OFF //なしの時はOFF
+#define DEBUG_ON //while make ON
+//#define DEBUG_OFF // finished make OFF
 
 #include "DxLib.h"
-
-#define LINE_NUM 5 //線の数
-#define LINE_START_X 150 //一番上の図形の開始X座標 図形の左下の座標
-#define LINE_START_Y 220 //一番上の図形の開始Y座標 図形の左下の座標
-#define LINE_COL_W 80 //縦線のX軸の間隔
-#define LINE_ROW_H 30 //横線のY軸の間隔
-#define FIGURE_NUM 4 //図形の数(4面)
-#define FIGURE_INTERVAL 150 //各図形の上下の距離
-#define TRIANGLE_GAP_X 5 //図形と塗りつぶしの隙間の幅
-#define TRIANGLE_GAP_Y 1.5f //図形と塗りつぶしの隙間の幅
-
+//FIGURE
+#define LINE_NUM 5 //line num
+#define LINE_START_X 150 //top figure start X-point (left-down-point)
+#define LINE_START_Y 220 //top figure start Y-point (left-down-point)
+#define LINE_COL_W 80 //vertical-line width 
+#define LINE_ROW_H 30 //horizontal-line height
+#define FIGURE_NUM 4 //figure num
+#define FIGURE_INTERVAL 150 //each figure distance
+#define TRIANGLE_GAP_X 5 //X-point gap between line and triangle 
+#define TRIANGLE_GAP_Y 1.5f //Y-point gap between line and triangle 
+//COLOR
+#define BLACK GetColor(0,0,0)
+#define LIGHT_GRAY GetColor(224, 224, 224)
+#define LIGHT_RED GetColor(255, 153, 153)

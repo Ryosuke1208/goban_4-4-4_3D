@@ -1,5 +1,5 @@
 //************************************************
-//塗りつぶし処理
+//fill proc
 //************************************************
 #include "define.h"
 
@@ -8,28 +8,26 @@ void fill(int x, int y, int z, int status) {
 	static unsigned int color = 0;
 	switch (status) {
 	case 0:
-		color = GetColor(224, 224, 224); //灰色
+		color = LIGHT_GRAY; //light gray
 		break;
 	case 1:
-		//color = GetColor(224, 224, 224); //灰色
-		color = GetColor(255, 153, 153); //薄い赤
+		color = LIGHT_RED; //light red
 		break;
 	default:
 		break;
 	}
 
 	//************************************************
-	//XYZ座標の図形の左下の座標の取得
+	//get left-down-point each XYZ-point
 	//************************************************
 	triangleX = LINE_START_X + (LINE_COL_W * x) + ((LINE_COL_W - LINE_ROW_H) * y);
 	triangleY = LINE_START_Y + (-LINE_ROW_H * y) + FIGURE_INTERVAL * z;
-#ifdef DEBUG_ON
-	DrawFormatString(0, 60, color, "triangleX %d　　triangleY %d", triangleX, triangleY);
-#endif
-	//左下、上、右下の座標
-	DrawTriangleAA(triangleX + TRIANGLE_GAP_X, triangleY - TRIANGLE_GAP_Y, triangleX + (LINE_COL_W - LINE_ROW_H), triangleY - LINE_ROW_H + TRIANGLE_GAP_Y,
-		triangleX + LINE_COL_W, triangleY - TRIANGLE_GAP_Y, color, TRUE);
-	//右上、左上、下の座標
-	DrawTriangleAA(triangleX + LINE_COL_W + (LINE_COL_W - LINE_ROW_H) - TRIANGLE_GAP_X, triangleY - LINE_ROW_H + TRIANGLE_GAP_Y, triangleX + (LINE_COL_W - LINE_ROW_H), triangleY - LINE_ROW_H + TRIANGLE_GAP_Y,
-		triangleX + LINE_COL_W, triangleY - TRIANGLE_GAP_Y, color, TRUE);
+	//left-down,top,right-down -point
+	DrawTriangleAA((float)(triangleX + TRIANGLE_GAP_X), (float)(triangleY - TRIANGLE_GAP_Y),
+		(float)(triangleX + (LINE_COL_W - LINE_ROW_H)), (float)(triangleY - LINE_ROW_H + TRIANGLE_GAP_Y),
+		(float)(triangleX + LINE_COL_W), (float)(triangleY - TRIANGLE_GAP_Y), color, TRUE);
+	//right-up,left-up,down -point
+	DrawTriangleAA((float)(triangleX + LINE_COL_W + (LINE_COL_W - LINE_ROW_H) - TRIANGLE_GAP_X), (float)(triangleY - LINE_ROW_H + TRIANGLE_GAP_Y),
+		(float)(triangleX + (LINE_COL_W - LINE_ROW_H)), (float)(triangleY - LINE_ROW_H + TRIANGLE_GAP_Y),
+		(float)(triangleX + LINE_COL_W), (float)(triangleY - TRIANGLE_GAP_Y), color, TRUE);
 }

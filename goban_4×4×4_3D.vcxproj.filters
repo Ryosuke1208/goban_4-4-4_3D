@@ -4,7 +4,7 @@
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="fill.cpp" />
     <ClCompile Include="makeFigure.cpp" />
-    <ClCompile Include="getMouseXYZ.cpp" />
+    <ClCompile Include="playerCanPut.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h" />
