@@ -13,6 +13,9 @@ void fill(int x, int y, int z, int status) {
 	case 1:
 		color = LIGHT_RED; //light red
 		break;
+	case 2:
+		color = LIGHT_BLUE;
+		break;
 	default:
 		break;
 	}
@@ -20,8 +23,8 @@ void fill(int x, int y, int z, int status) {
 	//************************************************
 	//get left-down-point each XYZ-point
 	//************************************************
-	triangleX = LINE_START_X + (LINE_COL_W * x) + ((LINE_COL_W - LINE_ROW_H) * y);
-	triangleY = LINE_START_Y + (-LINE_ROW_H * y) + FIGURE_INTERVAL * z;
+	triangleX = LINE_START_X + (LINE_COL_W * z) + ((LINE_COL_W - LINE_ROW_H) * y);
+	triangleY = LINE_START_Y + (-LINE_ROW_H * y) + FIGURE_INTERVAL * x;
 	//left-down,top,right-down -point
 	DrawTriangleAA((float)(triangleX + TRIANGLE_GAP_X), (float)(triangleY - TRIANGLE_GAP_Y),
 		(float)(triangleX + (LINE_COL_W - LINE_ROW_H)), (float)(triangleY - LINE_ROW_H + TRIANGLE_GAP_Y),

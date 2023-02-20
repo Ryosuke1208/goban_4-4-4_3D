@@ -20,8 +20,8 @@ void makeFigure(int puzzle[][FIGURE_NUM][FIGURE_NUM]) {
     for (i = 0; i < FIGURE_NUM; i++) {
         for (j = 0; j < FIGURE_NUM; j++) {
             for (k = 0; k < FIGURE_NUM; k++) {
-                if (puzzle[k][j][i] != -1) {
-                    fill(i, j, k, puzzle[k][j][i]);
+                if (puzzle[i][j][k] != -1) {
+                    fill(i, j, k, puzzle[i][j][k]);
                 }
             }
         }

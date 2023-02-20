@@ -17,3 +17,11 @@
 #define BLACK GetColor(0,0,0)
 #define LIGHT_GRAY GetColor(224, 224, 224)
 #define LIGHT_RED GetColor(255, 153, 153)
+#define LIGHT_BLUE GetColor(153, 204, 255)
+
+enum STATUS {
+	NG = -1,
+	OK,
+	PLAYER,
+	CPU
+};
