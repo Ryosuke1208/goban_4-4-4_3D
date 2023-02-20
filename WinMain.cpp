@@ -55,8 +55,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
         if (CheckHitKey(KEY_INPUT_RETURN)) break;
     }
 
-    printfDx("プレイヤー%dの勝利です。", playerNum);
-
 	DxLib_End(); // finish DxLib
 
 	return 0;
