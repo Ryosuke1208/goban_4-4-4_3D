@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="checkBingo.cpp" />
     <ClCompile Include="fill.cpp" />
     <ClCompile Include="isDone.cpp" />
     <ClCompile Include="playerCanPut.cpp" />

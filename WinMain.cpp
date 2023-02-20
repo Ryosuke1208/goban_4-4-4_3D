@@ -4,6 +4,7 @@ void fill(int, int, int, int);
 void makeFigure(int [][FIGURE_NUM][FIGURE_NUM]);
 boolean playerCanPut(int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
 boolean isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
+int checkBingo(int[][FIGURE_NUM][FIGURE_NUM], int, int, int, int);
 
 // Program start with WinMain
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd) 
@@ -41,6 +42,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
                 puzzle[x][y][z] = (playerNum % 2) + 1; //left-click on, change status to player
                 if (x > 0)puzzle[x - 1][y][z] = 0;
                 //if (isDone(puzzle, playerNum)) break;
+                if (checkBingo(puzzle, x, y, z, (playerNum % 2) + 1)) break;
                 playerNum++;
             }
         }

@@ -6,6 +6,7 @@
     <ClCompile Include="makeFigure.cpp" />
     <ClCompile Include="playerCanPut.cpp" />
     <ClCompile Include="isDone.cpp" />
+    <ClCompile Include="checkBingo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h" />
