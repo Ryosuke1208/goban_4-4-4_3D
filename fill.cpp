@@ -7,13 +7,13 @@ void fill(int x, int y, int z, int status) {
 	static int triangleX = 0, triangleY = 0;
 	static unsigned int color = 0;
 	switch (status) {
-	case 0:
+	case OK:
 		color = LIGHT_GRAY; //light gray
 		break;
-	case 1:
+	case P1:
 		color = LIGHT_RED; //light red
 		break;
-	case 2:
+	case P2:
 		color = LIGHT_BLUE;
 		break;
 	default:

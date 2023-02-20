@@ -18,10 +18,8 @@
 #define LIGHT_GRAY GetColor(224, 224, 224)
 #define LIGHT_RED GetColor(255, 153, 153)
 #define LIGHT_BLUE GetColor(153, 204, 255)
-
-enum STATUS {
-	NG = -1,
-	OK,
-	PLAYER,
-	CPU
-};
+//BOARD STATUS
+#define NG -1
+#define OK 0
+#define P1 1
+#define P2 2
