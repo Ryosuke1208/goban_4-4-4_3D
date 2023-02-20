@@ -4,20 +4,54 @@
 #include "define.h"
 
 boolean isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
-	static int i,j,k;
+	static int x, y, z;
 	static int cnt;
 
-	for (i = 0; i < FIGURE_NUM; i++) {
-		for (k = FIGURE_NUM - 1; k >= 0; k--) {
-			if (puzzle[k][0][i] == playerNum && puzzle[k][1][i] == playerNum &&
-				puzzle[k][2][i] == playerNum && puzzle[k][3][i] == playerNum) return true;
+	for (x = FIGURE_NUM - 1; x >= 0; x--) {
+		for (y = 0; y < FIGURE_NUM; y++) { //check horizonal line on one board
+			if (puzzle[x][y][0] == playerNum && puzzle[x][y][1] == playerNum &&
+				puzzle[x][y][2] == playerNum && puzzle[x][y][3] == playerNum) return true;
+		}
+		for (z = 0; z < FIGURE_NUM; z++) { //check vertical line on one board
+			if (puzzle[x][0][z] == playerNum && puzzle[x][1][z] == playerNum &&
+				puzzle[x][2][z] == playerNum && puzzle[x][3][z] == playerNum) return true;
+		}
+		
+		if (puzzle[x][0][0] == playerNum && puzzle[x][1][1] == playerNum && //check cross line
+			puzzle[x][2][2] == playerNum && puzzle[x][3][3] == playerNum) return true;
+		if (puzzle[x][3][0] == playerNum && puzzle[x][2][1] == playerNum && //check cross line
+			puzzle[x][1][2] == playerNum && puzzle[x][0][3] == playerNum) return true;
+	}
+
+	for (y = 0; y < FIGURE_NUM; y++) { //check horizonal cross line on four board
+		if (puzzle[0][y][0] == playerNum && puzzle[1][y][1] == playerNum &&
+			puzzle[2][y][2] == playerNum && puzzle[3][y][3] == playerNum) return true;
+		if (puzzle[0][y][3] == playerNum && puzzle[1][y][2] == playerNum &&
+			puzzle[2][y][1] == playerNum && puzzle[3][y][0] == playerNum) return true;
+	}
+
+	for (z = 0; z < FIGURE_NUM; z++) { //check vertical cross line on four board
+		if (puzzle[0][0][z] == playerNum && puzzle[1][1][z] == playerNum &&
+			puzzle[2][2][z] == playerNum && puzzle[3][3][z] == playerNum) return true;
+		if (puzzle[0][3][z] == playerNum && puzzle[1][2][z] == playerNum &&
+			puzzle[2][1][z] == playerNum && puzzle[3][0][z] == playerNum) return true;
+	}
+
+	for (y = 0; y < FIGURE_NUM; y++) {
+		for (z = 0; z < FIGURE_NUM; z++) {
+			if(puzzle[0][y][z] == playerNum && puzzle[1][y][z] == playerNum &&
+				puzzle[2][y][z] == playerNum && puzzle[3][y][z] == playerNum) return true;
 		}
 	}
-	for (j = 0; j < FIGURE_NUM; j++) {
-		for (k = FIGURE_NUM - 1; k >= 0; k--) {
-			if (puzzle[k][j][0] == playerNum && puzzle[k][j][1] == playerNum &&
-				puzzle[k][j][2] == playerNum && puzzle[k][j][3] == playerNum) return true;
-		}
-	}
+
+	if(puzzle[0][0][0] == playerNum && puzzle[1][1][1] == playerNum &&
+		puzzle[2][2][2] == playerNum && puzzle[3][3][3] == playerNum) return true;
+	if (puzzle[0][3][3] == playerNum && puzzle[1][2][2] == playerNum &&
+		puzzle[2][1][1] == playerNum && puzzle[3][0][0] == playerNum) return true;
+	if (puzzle[0][3][0] == playerNum && puzzle[1][2][1] == playerNum &&
+		puzzle[2][1][2] == playerNum && puzzle[3][0][3] == playerNum) return true;
+	if (puzzle[0][0][3] == playerNum && puzzle[1][1][2] == playerNum &&
+		puzzle[2][2][1] == playerNum && puzzle[3][3][0] == playerNum) return true;
+
 	return false;
 }
