@@ -4,6 +4,7 @@ void fill(int, int, int, int);
 void makeFigure(int [][FIGURE_NUM][FIGURE_NUM]);
 boolean playerCanPut(int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
 boolean isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
+int checkBingo(int[][FIGURE_NUM][FIGURE_NUM], int, int, int, int);
 
 // Program start with WinMain
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd) 
@@ -36,11 +37,15 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
         /**********************player vs player***********************/
         //player proc
         if (playerCanPut(puzzle, &x, &y, &z)) { //scan Mouse-XYZ-point and player can put, return true
-            fill(x, y, z, (playerNum % 2) + 1); //1 ¨ P1, 2 ¨ P2
+            fill(x, y, z, (playerNum % 2) + 1); //1 â†’ P1, 2 â†’ P2
             if ((GetMouseInput() & MOUSE_INPUT_LEFT) == 1) {
                 puzzle[x][y][z] = (playerNum % 2) + 1; //left-click on, change status to player
+
+                if (x > 0)puzzle[x - 1][y][z] = 0;
+                //if (checkBingo(puzzle, x, y, z, (playerNum % 2) + 1)) break;
                 if (x > 0) puzzle[x - 1][y][z] = OK;
                 if (isDone(puzzle, (playerNum % 2) + 1)) break;
+
                 playerNum++;
             }
         }
@@ -50,7 +55,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
         if (CheckHitKey(KEY_INPUT_RETURN)) break;
     }
 
-    printfDx("ƒvƒŒƒCƒ„[%d‚ÌŸ—˜‚Å‚·B", playerNum);
+    printfDx("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼%dã®å‹åˆ©ã§ã™ã€‚", playerNum);
 
 	DxLib_End(); // finish DxLib
 
