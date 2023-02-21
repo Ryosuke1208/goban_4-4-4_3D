@@ -151,11 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="alphaBeta.cpp" />
     <ClCompile Include="checkBingo.cpp" />
     <ClCompile Include="fill.cpp" />
+    <ClCompile Include="findBestMove.cpp" />
     <ClCompile Include="isDone.cpp" />
     <ClCompile Include="playerCanPut.cpp" />
     <ClCompile Include="makeFigure.cpp" />
+    <ClCompile Include="PvP.cpp" />
+    <ClCompile Include="showWinner.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

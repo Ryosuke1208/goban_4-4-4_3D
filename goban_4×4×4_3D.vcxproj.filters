@@ -7,6 +7,10 @@
     <ClCompile Include="playerCanPut.cpp" />
     <ClCompile Include="isDone.cpp" />
     <ClCompile Include="checkBingo.cpp" />
+    <ClCompile Include="alphaBeta.cpp" />
+    <ClCompile Include="findBestMove.cpp" />
+    <ClCompile Include="showWinner.cpp" />
+    <ClCompile Include="PvP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h" />

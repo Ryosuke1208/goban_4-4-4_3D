@@ -1,3 +1,4 @@
+/*
 #include "define.h"
 
 int checkBingo(int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, int z, int pNum) {
@@ -56,3 +57,4 @@ int checkBingo(int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, int z, int pN
         return 0;
     }
 }
+*/
