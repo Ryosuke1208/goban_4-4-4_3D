@@ -3,11 +3,14 @@
 //************************************************
 #include "define.h"
 
+int evaluate(int board[][FIGURE_NUM][FIGURE_NUM], int);
+int isDone(int board[][FIGURE_NUM][FIGURE_NUM], int);
+
 int alphaBeta(int board[][FIGURE_NUM][FIGURE_NUM], int depth, int alpha, int beta, int player) {
-	static int i, j, k;
-	static int score;
-	if (depth == 0) {
-		//return evaluate(board, player);
+	int i, j, k;
+	int score;
+	if (isDone(board, player) || depth == 0) {
+		return evaluate(board, player);
 	}
 	for (i = 0; i < FIGURE_NUM; i++) {
 		for (j = 0; j < FIGURE_NUM; j++) {

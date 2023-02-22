@@ -4,9 +4,10 @@
 #include "define.h"
 
 int isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
-	static int x, y, z;
-	static int cnt = 0;
+	int x, y, z;
+	int cnt = 0;
 
+	cnt = 0;
 	for (x = FIGURE_NUM - 1; x >= 0; x--) {
 		for (y = 0; y < FIGURE_NUM; y++) { //check horizonal line on one board
 			if (puzzle[x][y][0] == playerNum && puzzle[x][y][1] == playerNum &&

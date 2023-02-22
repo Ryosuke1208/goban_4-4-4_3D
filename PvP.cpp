@@ -7,7 +7,7 @@ void fill(int, int, int, int);
 void makeFigure(int[][FIGURE_NUM][FIGURE_NUM]);
 boolean playerCanPut(int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
 int isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
-void showWinner(int);
+void showWinPvP(int);
 
 void PvP() {
     int x, y, z;
@@ -35,7 +35,7 @@ void PvP() {
                 //if (checkBingo(puzzle, x, y, z, (playerNum % 2) + 1)) break;
                 if (x > 0) puzzle[x - 1][y][z] = OK;
                 if (isDone(puzzle, (playerNum % 2) + 1)) {
-                    showWinner((playerNum % 2) + 1);
+                    showWinPvP((playerNum % 2) + 1);
                     break;
                 }
                 playerNum++;

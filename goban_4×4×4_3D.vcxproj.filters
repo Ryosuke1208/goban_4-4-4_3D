@@ -11,6 +11,8 @@
     <ClCompile Include="findBestMove.cpp" />
     <ClCompile Include="showWinner.cpp" />
     <ClCompile Include="PvP.cpp" />
+    <ClCompile Include="PvC.cpp" />
+    <ClCompile Include="evaluation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h" />
