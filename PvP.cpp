@@ -1,16 +1,15 @@
 //************************************************
-//player vs player
+// プレイヤー同士での勝負の時
 //************************************************
 #include "define.h"
 
-void fill(int, int, int, int);
-void makeFigure(int[][FIGURE_NUM][FIGURE_NUM]);
-boolean playerCanPut(int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
+void playerPutProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
 int isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
+void showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM]);
 void showWinPvP(int);
-
+int isReach(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum);
 void PvP() {
-    int x, y, z;
+    // 変数の定義
     int playerNum = 0;
     int puzzle[FIGURE_NUM][FIGURE_NUM][FIGURE_NUM] =
     {
@@ -19,32 +18,22 @@ void PvP() {
         {{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG}},
         {{OK,OK,OK,OK},{OK,OK,OK,OK},{OK,OK,OK,OK},{OK,OK,OK,OK}}
     };
-
+    //ゲーム処理
     while (1) {
-        ClearDrawScreen();
-        //make figure
-        makeFigure(puzzle);
-        /**********************player vs player***********************/
-        //player proc
-        if (playerCanPut(puzzle, &x, &y, &z)) { //scan Mouse-XYZ-point and player can put, return true
-            fill(x, y, z, (playerNum % 2) + 1); //1 → P1, 2 → P2
-            if ((GetMouseInput() & MOUSE_INPUT_LEFT) == 1) {
-                puzzle[x][y][z] = (playerNum % 2) + 1; //left-click on, change status to player
-
-                if (x > 0)puzzle[x - 1][y][z] = 0;
-                //if (checkBingo(puzzle, x, y, z, (playerNum % 2) + 1)) break;
-                if (x > 0) puzzle[x - 1][y][z] = OK;
-                if (isDone(puzzle, (playerNum % 2) + 1)) {
-                    showWinPvP((playerNum % 2) + 1);
-                    break;
-                }
-                playerNum++;
-            }
+        //プレイヤーが出す手を決める処理
+        if (playerNum % 2 == 0) {
+            playerPutProc(puzzle, (playerNum % 2) + 1);
         }
-        /************************************************************/
-
-        ScreenFlip();
-
-        if (CheckHitKey(KEY_INPUT_RETURN)) break;
+        else {
+            playerPutProc(puzzle, (playerNum % 2) + 1);
+        }
+        //ビンゴになったかどうかのチェック
+        if (isDone(puzzle, (playerNum % 2) + 1)) {
+            showFinishedStatus(puzzle);
+            showWinPvP((playerNum % 2) + 1);
+            break;
+        }
+        printfDx("reach:%d ", isReach(puzzle, (playerNum % 2) + 1));
+        playerNum++;
     }
 }

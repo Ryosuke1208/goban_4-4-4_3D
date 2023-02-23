@@ -153,14 +153,21 @@
   <ItemGroup>
     <ClCompile Include="alphaBeta.cpp" />
     <ClCompile Include="checkBingo.cpp" />
+    <ClCompile Include="cpuEasyProc.cpp" />
+    <ClCompile Include="decideByValue.cpp" />
     <ClCompile Include="evaluation.cpp" />
     <ClCompile Include="fill.cpp" />
     <ClCompile Include="findBestMove.cpp" />
     <ClCompile Include="isDone.cpp" />
+    <ClCompile Include="isReach.cpp" />
     <ClCompile Include="playerCanPut.cpp" />
     <ClCompile Include="makeFigure.cpp" />
+    <ClCompile Include="playerPutProc.cpp" />
     <ClCompile Include="PvC.cpp" />
+    <ClCompile Include="PvC_alphaBeta.cpp" />
     <ClCompile Include="PvP.cpp" />
+    <ClCompile Include="search.cpp" />
+    <ClCompile Include="showFinishedStatus.cpp" />
     <ClCompile Include="showWinner.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>

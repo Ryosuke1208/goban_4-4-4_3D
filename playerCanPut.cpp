@@ -1,5 +1,10 @@
 //************************************************
-//get Mouse figure's-XYZ-point and check can put
+// マウスのXYZ座標を取得し、
+// そこに置ける状態かを取得
+// 一番上の図形の左下の図形の座標を{0,0,0}として、
+// 縦軸がX座標、奥行きの軸がY座標、右向きの軸がZ座標
+// とする(あくまで図形上のXYZ座標であり
+// マウスのXY座標の概念とは違う)
 //************************************************
 #include "define.h"
 
@@ -9,23 +14,25 @@ boolean playerCanPut(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int *
     static int mouseX, mouseY;
 
     GetMousePoint(&mouseX, &mouseY);
-    //if Y-point over figure's-area , not fill
-    if (mouseY < LINE_START_Y - (LINE_ROW_H * 4) || //over top area
-        (mouseY > LINE_START_Y && mouseY < LINE_START_Y + FIGURE_INTERVAL * 1 - (LINE_ROW_H * (LINE_NUM - 1))) || // between top area and second area
-            (mouseY > LINE_START_Y + FIGURE_INTERVAL * 1 && mouseY < LINE_START_Y + FIGURE_INTERVAL * 2 - (LINE_ROW_H * (LINE_NUM - 1))) || // between second area and third area
-                (mouseY > LINE_START_Y + FIGURE_INTERVAL * 2 && mouseY < LINE_START_Y + FIGURE_INTERVAL * 3 - (LINE_ROW_H * (LINE_NUM - 1))) || // between third area and four area
-                    mouseY > LINE_START_Y + FIGURE_INTERVAL * 3) return false; //under four area
+    // そもそもマウスのY座標が図形の範囲内にあるかどうかの判定(マジックナンバーあり)
+    if (mouseY < LINE_START_Y - (LINE_ROW_H * 4) || // 一番上の図形の上
+        (mouseY > LINE_START_Y && mouseY < LINE_START_Y + FIGURE_INTERVAL * 1 - (LINE_ROW_H * (LINE_NUM - 1))) || // 1番目と2番目の図形の間
+            (mouseY > LINE_START_Y + FIGURE_INTERVAL * 1 && mouseY < LINE_START_Y + FIGURE_INTERVAL * 2 - (LINE_ROW_H * (LINE_NUM - 1))) || // 2番目と3番目の図形の間
+                (mouseY > LINE_START_Y + FIGURE_INTERVAL * 2 && mouseY < LINE_START_Y + FIGURE_INTERVAL * 3 - (LINE_ROW_H * (LINE_NUM - 1))) || // 3番目と一番下の図形の間
+                    mouseY > LINE_START_Y + FIGURE_INTERVAL * 3) return false; // 一番下の図形の下
 
-    for (i = 0; i < FIGURE_NUM; i++) { //decide Z-point
+    for (i = 0; i < FIGURE_NUM; i++) { // 図形上のX座標の決定
         if (mouseY < LINE_START_Y + i * FIGURE_INTERVAL && mouseY > LINE_START_Y + i * FIGURE_INTERVAL - (LINE_ROW_H * (LINE_NUM - 1))) X = i;
     }
-    Y = (LINE_START_Y + FIGURE_INTERVAL * X - mouseY) / LINE_ROW_H; //decide Y-point
-    //if X-point over figure's-area , not fill
+    Y = (LINE_START_Y + FIGURE_INTERVAL * X - mouseY) / LINE_ROW_H; // 図形上のY座標の決定
+    // そもそもマウスのX座標が図形の範囲内にあるかどうかの判定
     if (mouseX < LINE_START_X + Y * (LINE_COL_W - LINE_ROW_H) || mouseX > LINE_START_X + Y * (LINE_COL_W - LINE_ROW_H) + LINE_COL_W * (LINE_NUM - 1) + (LINE_COL_W - LINE_ROW_H)) {
         return false;
     }
-    Z = (mouseX - (LINE_START_X + Y * (LINE_COL_W - LINE_ROW_H))) / LINE_COL_W; //decide X-point
-    if (LINE_START_X + LINE_COL_W * Z + Y * (LINE_COL_W - LINE_ROW_H) <= mouseX && mouseX <= LINE_START_X + LINE_COL_W * Z + (LINE_COL_W - LINE_ROW_H) + Y * (LINE_COL_W - LINE_ROW_H) //digonal area check
+    Z = (mouseX - (LINE_START_X + Y * (LINE_COL_W - LINE_ROW_H))) / LINE_COL_W; // 図形上のX座標の決定
+    // 図形上のひし形の一つ一つの図形の斜めになっている部分のZ座標の調整
+    // 接戦の傾きを求めて、Z座標を＋－している
+    if (LINE_START_X + LINE_COL_W * Z + Y * (LINE_COL_W - LINE_ROW_H) <= mouseX && mouseX <= LINE_START_X + LINE_COL_W * Z + (LINE_COL_W - LINE_ROW_H) + Y * (LINE_COL_W - LINE_ROW_H)
         && (float)(mouseX - (LINE_START_X + LINE_COL_W * Z + Y * (LINE_COL_W - LINE_ROW_H))) * ((float)LINE_ROW_H / (float)(LINE_COL_W - LINE_ROW_H))
             <= (float)(LINE_START_Y + FIGURE_INTERVAL * X - (Y * LINE_ROW_H)) - mouseY) Z--;
 
@@ -42,11 +49,11 @@ boolean playerCanPut(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int *
     DrawFormatString(0, 60, BLACK, "tempX3 %f　　tempY %f", tempX3, tempY);
 #endif
 
-    if (X >= 0 && X <= 3 && Y >= 0 && Y <= 3 && Z >= 0 && Z <= 3 && puzzle[X][Y][Z] == 0) {
+    if (X >= 0 && X <= 3 && Y >= 0 && Y <= 3 && Z >= 0 && Z <= 3 && puzzle[X][Y][Z] == OK) {
         * x = X;
         * y = Y;
         * z = Z;
-        return true; //if can put ,return true
+        return true; //置くことが出来るときはXYZ座標をセットしてtrueを返却する
     }
     else {
         return false;    

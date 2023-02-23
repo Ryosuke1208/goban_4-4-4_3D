@@ -1,19 +1,17 @@
 //************************************************
-//player vs computer
+// コンピューターとの対戦
 //************************************************
 #include "define.h"
 
-void fill(int, int, int, int);
-void makeFigure(int[][FIGURE_NUM][FIGURE_NUM]);
-boolean playerCanPut(int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
-int isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
+void playerPutProc(int [][FIGURE_NUM][FIGURE_NUM], int);
+void cpuEasyProc(int [][FIGURE_NUM][FIGURE_NUM], int);
+int isDone(int [][FIGURE_NUM][FIGURE_NUM], int);
+void showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM]);
 void showWinPvC(int);
-void find_best_move(int board[][4][4], int depth, int player, int num[3]);
 
 void PvC() {
-    int x = 0, y = 0, z = 0;
-    int playerNum = 0;
-    int num[3];
+    // 変数の定義
+    int playerNum = 1;
     int puzzle[FIGURE_NUM][FIGURE_NUM][FIGURE_NUM] =
     {
         {{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG}},
@@ -21,46 +19,24 @@ void PvC() {
         {{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG}},
         {{OK,OK,OK,OK},{OK,OK,OK,OK},{OK,OK,OK,OK},{OK,OK,OK,OK}}
     };
-
+    // ゲーム処理
     while (1) {
-        ClearDrawScreen();
-        //make figure
-        makeFigure(puzzle);
-        /**********************player vs computer***********************/
-        //player proc
-        if (playerNum % 2 == 0) {
-            if(playerCanPut(puzzle, &x, &y, &z)) { //scan Mouse-XYZ-point and player can put, return true
-                fill(x, y, z, (playerNum % 2) + 1);
-                if ((GetMouseInput() & MOUSE_INPUT_LEFT) == 1) {
-                    puzzle[x][y][z] = (playerNum % 2) + 1; //left-click on, change status to player
-                    if (x > 0)puzzle[x - 1][y][z] = 0;
-                    //if (checkBingo(puzzle, x, y, z, (playerNum % 2) + 1)) break;
-                    if (x > 0) puzzle[x - 1][y][z] = OK;
-                    if (isDone(puzzle, (playerNum % 2) + 1)) {
-                        showWinPvC((playerNum % 2) + 1);
-                        break;
-                    }
-                    playerNum++;
-                }
-
-            }
+        if (playerNum % 2 == 0) { // プレイヤーが出す手を決める処理
+            playerPutProc(puzzle, (playerNum % 2) + 1);
         }
-        else {
-            find_best_move(puzzle, 3, (playerNum % 2) + 1, num);
-            puzzle[num[0]][num[1]][num[2]] = (playerNum % 2) + 1;
-            if (num[0] > 0) puzzle[num[0] - 1][num[1]][num[2]] = OK;
-            if (isDone(puzzle, (playerNum % 2) + 1)) {
-                showWinPvC((playerNum % 2) + 1);
-                break;
-            }
-            playerNum++;
+        else { // CPUが出す手を決める処理
+            cpuEasyProc(puzzle, (playerNum % 2) + 1);
         }
-        
-        
-        /************************************************************/
-
-        ScreenFlip();
-
-        if (CheckHitKey(KEY_INPUT_RETURN)) break;
-    }
+        // ビンゴになったかどうかのチェック
+        if (isDone(puzzle, (playerNum % 2) + 1)) {
+            // ビンゴがあったら最後の状態を表示し、勝者を表示して終了
+            showFinishedStatus(puzzle);
+            showWinPvC((playerNum % 2) + 1);
+            break;
+        }
+        playerNum++;
+    }   
 }
+
+
+
