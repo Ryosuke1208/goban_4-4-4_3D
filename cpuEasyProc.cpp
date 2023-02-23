@@ -19,7 +19,7 @@ void cpuEasyProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
             findBestMove(order, puzzle, &x, &y, &z, playerNum);
             if (x != 4) break;
             order++;
-            if (order == 3) {
+            if (order == 5) {
                 if(decideByValue(puzzle, &x, &y, &z)) break;
                 // false‚Ì‚Æ‚«‚Í‚à‚¤‘Å‚Âè‚ª‚È‚¢‚Æ‚«‚Ìˆ—‚ğŒã‚Å’Ç‰Á‚·‚é
             }

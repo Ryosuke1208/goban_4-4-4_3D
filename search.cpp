@@ -23,19 +23,31 @@ boolean search(int order, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, in
         cnt = isDone(puzzle, (playerNumber % 2) + 1);
         puzzle[x][y][z] = OK;
     }
-    /*else if (order == 3) {
+    else if (order == 3) {
         puzzle[x][y][z] = playerNumber;
         if(x > 0) puzzle[x - 1][y][z] = OK;
-        findBestMove(1, puzzle, &x2, &y2, &z2, playerNumber);
-        puzzle[x2][y2][z2] = playerNumber;
+        //findBestMove(1, puzzle, &x2, &y2, &z2, playerNumber);
+        //puzzle[x2][y2][z2] = playerNumber;
         cnt = isReach(puzzle, playerNumber);
-        puzzle[x2][y2][z2] = OK;
-
+        //puzzle[x2][y2][z2] = OK;
         puzzle[x][y][z] = OK;
         if (x > 0) puzzle[x - 1][y][z] = NG;
-        if (cnt >= 1)return true;
+        if (cnt >= 2) {
+            return true;
+        }
         else return false;
-    }*/
+    }
+    else if (order == 4) {
+        puzzle[x][y][z] = (playerNumber % 2) + 1;
+        if (x > 0) puzzle[x - 1][y][z] = OK;
+        cnt = isReach(puzzle, (playerNumber % 2) + 1);
+        puzzle[x][y][z] = OK;
+        if (x > 0) puzzle[x - 1][y][z] = NG;
+        if (cnt >= 2) {
+            return true;
+        }
+        else return false;
+    }
     
     if (cnt) return true; // ‘Šè‚ªƒrƒ“ƒS‚É‚È‚é‚È‚ç‘j~‚·‚éèA©•ª‚ªƒrƒ“ƒS‚É‚È‚é‚È‚ç‚»‚Ìè‚ğo‚·
     else return false;
