@@ -54,9 +54,9 @@ int isReach(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
 		if (cnt1 == 3 && cnt2 == 1) reach++;
 	}
 
-	cnt1 = 0;
-	cnt2 = 0;
 	for (x = FIGURE_NUM - 1; x >= 0; x--) { //一面ごとを平面に見たときの左上から右下へななめ線のチェック 4通り
+		cnt1 = 0;
+		cnt2 = 0;
 		if (puzzle[x][3][0] == playerNum) cnt1++;
 		if (puzzle[x][2][1] == playerNum) cnt1++;
 		if (puzzle[x][1][2] == playerNum) cnt1++;
@@ -65,8 +65,8 @@ int isReach(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
 		if (puzzle[x][2][1] == OK) cnt2++;
 		if (puzzle[x][1][2] == OK) cnt2++;
 		if (puzzle[x][0][3] == OK) cnt2++;
+		if (cnt1 == 3 && cnt2 == 1) reach++;
 	}
-	if (cnt1 == 3 && cnt2 == 1) reach++;
 	
 	for (y = 0; y < FIGURE_NUM; y++) { //四面を立体に見たときの横軸の左上から右下へななめ線のチェック 4通り
 		cnt1 = 0;

@@ -7,6 +7,7 @@ void playerPutProc(int [][FIGURE_NUM][FIGURE_NUM], int);
 int isDone(int [][FIGURE_NUM][FIGURE_NUM], int);
 void showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM]);
 void showWinPvP(int);
+int isReach(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum);
 boolean isDraw(int [][FIGURE_NUM][FIGURE_NUM]);
 void showDraw();
 
@@ -29,6 +30,7 @@ void PvP() {
         else {
             playerPutProc(puzzle, (playerNum % 2) + 1);
         }
+        printfDx("P%d:%d ", (playerNum % 2) + 1,isReach(puzzle, (playerNum % 2) + 1));
         //ビンゴになったかどうかのチェック
         if (isDone(puzzle, (playerNum % 2) + 1)) {
             showFinishedStatus(puzzle);
