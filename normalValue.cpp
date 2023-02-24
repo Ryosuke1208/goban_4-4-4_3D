@@ -25,20 +25,19 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
     if (puzzle[3][0][3] == P2) value[2][0][3] += 10;
     if (puzzle[3][3][0] == P2) value[2][3][0] += 10;
     if (puzzle[3][3][3] == P2) value[2][3][3] += 10;
-
-    //3段目角の評価点の変更
-    //相手がおいたときは阻止する
+    // 3段目角の評価点の変更
+    // 相手がおいたときは阻止する
     if (puzzle[3][0][0] == P1) value[1][0][0] += 30;
     if (puzzle[3][0][3] == P1) value[1][0][3] += 30;
     if (puzzle[3][3][0] == P1) value[1][3][0] += 30;
     if (puzzle[3][3][3] == P1) value[1][3][3] += 30;
-    //自分が置いた時も変更
+    // 自分が置いた時も変更
     if (puzzle[3][0][0] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][0][0] += 30;
     if (puzzle[3][0][3] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][0][3] += 30;
     if (puzzle[3][3][0] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][3][0] += 30;
     if (puzzle[3][3][3] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][3][3] += 30;
 
-    //クロスアタック対策
+    // クロスアタック対策
     for (i = 3; i >= 0; i--) {
         for (j = 0; j < 4; j++) {
             cnt = 0;
@@ -141,6 +140,7 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
             return true;
         }
     }*/
+
     // 評価値の高い手が見つかった時はそこを返す
     for (i = 3; i >= 0; i--) {
         for (j = 0; j < 4; j++) {
@@ -148,7 +148,6 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
                 if (puzzle[i][j][k] == OK) {
                     puzzle[i][j][k] = P2;
                     if (i > 0)puzzle[i - 1][j][k] = OK;
-                    printfDx("%d: ", isReach(puzzle, P1));
                     if (isReach(puzzle, P1) == 0) {
                         if (value[i][j][k] > max) {
                             max = value[i][j][k];

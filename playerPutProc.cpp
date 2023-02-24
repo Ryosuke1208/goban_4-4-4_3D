@@ -14,29 +14,25 @@ void playerPutProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
         ClearDrawScreen();
         // 図形の作成と描画
         makeFigure(puzzle);
-        if (playerCanPut(puzzle, &x, &y, &z)) { // そもそも置ける箇所かどうか確認する
-            fill(x, y, z, playerNum);
-        }
-
+        if (playerCanPut(puzzle, &x, &y, &z)) fill(x, y, z, playerNum);// そもそも置ける箇所かどうか確認する
         // マウスのボタンが押されたり離されたりしたかどうかの情報を取得する
         if (!GetMouseInputLog2(&Button, &ClickX, &ClickY, &LogType, TRUE)) {
-
             if ((Button & MOUSE_INPUT_LEFT))
             {
                 // 左クリックが押されていて、離れた瞬間に情報を確定する
                 if (LogType == MOUSE_INPUT_LOG_UP) {
-                    if (x >= 0 && x <= 3 && y >= 0 && y <= 3 && z >= 0 && z <= 3) {
+                    if (playerCanPut(puzzle, &x, &y, &z)) {
                         puzzle[x][y][z] = playerNum;
                         if (x > 0) puzzle[x - 1][y][z] = OK;
                         break;
                     }
                     else {
+                        LogType = 0;
                         continue;
                     }
                 }
             }
         }
-
         ScreenFlip();
     }
 }
