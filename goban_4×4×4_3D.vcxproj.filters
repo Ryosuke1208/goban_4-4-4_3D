@@ -10,19 +10,10 @@
     <ClCompile Include="cpuEasyProc.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
-    <ClCompile Include="alphaBeta.cpp">
-      <Filter>cpu</Filter>
-    </ClCompile>
     <ClCompile Include="decideByValue.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
-    <ClCompile Include="evaluation.cpp">
-      <Filter>cpu</Filter>
-    </ClCompile>
     <ClCompile Include="findBestMove.cpp">
-      <Filter>cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="PvC_alphaBeta.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp">
@@ -58,6 +49,15 @@
     <ClCompile Include="isReach.cpp">
       <Filter>tools</Filter>
     </ClCompile>
+    <ClCompile Include="alphaBeta.cpp">
+      <Filter>alphaBeta</Filter>
+    </ClCompile>
+    <ClCompile Include="PvC_alphaBeta.cpp">
+      <Filter>alphaBeta</Filter>
+    </ClCompile>
+    <ClCompile Include="evaluation.cpp">
+      <Filter>alphaBeta</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="player">
@@ -71,6 +71,9 @@
     </Filter>
     <Filter Include="tools">
       <UniqueIdentifier>{32c1fa5d-6658-440b-aec9-c2bde20281f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alphaBeta">
+      <UniqueIdentifier>{b36bee14-a792-4ab9-9251-afdae332c2b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
