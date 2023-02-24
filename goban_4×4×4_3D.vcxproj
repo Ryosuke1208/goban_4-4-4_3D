@@ -159,6 +159,7 @@
     <ClCompile Include="fill.cpp" />
     <ClCompile Include="findBestMove.cpp" />
     <ClCompile Include="isDone.cpp" />
+    <ClCompile Include="isDraw.cpp" />
     <ClCompile Include="isReach.cpp" />
     <ClCompile Include="playerCanPut.cpp" />
     <ClCompile Include="makeFigure.cpp" />

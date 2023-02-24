@@ -3,7 +3,7 @@
 //************************************************
 #include "define.h"
 
-void makeFigure(int[][FIGURE_NUM][FIGURE_NUM]);
+void makeFigure(int [][FIGURE_NUM][FIGURE_NUM]);
 
 void showFinishedStatus(int puzzle[][FIGURE_NUM][FIGURE_NUM]) {
     ClearDrawScreen();

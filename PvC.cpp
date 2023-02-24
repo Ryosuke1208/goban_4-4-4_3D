@@ -8,6 +8,8 @@ void cpuEasyProc(int [][FIGURE_NUM][FIGURE_NUM], int);
 int isDone(int [][FIGURE_NUM][FIGURE_NUM], int);
 void showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM]);
 void showWinPvC(int);
+boolean isDraw(int[][FIGURE_NUM][FIGURE_NUM]);
+void showDraw();
 
 void PvC() {
     // 変数の定義
@@ -29,9 +31,13 @@ void PvC() {
         }
         // ビンゴになったかどうかのチェック
         if (isDone(puzzle, (playerNum % 2) + 1)) {
-            // ビンゴがあったら最後の状態を表示し、勝者を表示して終了
             showFinishedStatus(puzzle);
             showWinPvC((playerNum % 2) + 1);
+            break;
+        }
+        if (isDraw(puzzle)) {
+            showFinishedStatus(puzzle);
+            showDraw();
             break;
         }
         playerNum++;

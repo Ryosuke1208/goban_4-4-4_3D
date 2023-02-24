@@ -3,11 +3,13 @@
 //************************************************
 #include "define.h"
 
-void playerPutProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
-int isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int);
+void playerPutProc(int [][FIGURE_NUM][FIGURE_NUM], int);
+int isDone(int [][FIGURE_NUM][FIGURE_NUM], int);
 void showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM]);
 void showWinPvP(int);
-int isReach(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum);
+boolean isDraw(int [][FIGURE_NUM][FIGURE_NUM]);
+void showDraw();
+
 void PvP() {
     // ïœêîÇÃíËã`
     int playerNum = 0;
@@ -33,7 +35,11 @@ void PvP() {
             showWinPvP((playerNum % 2) + 1);
             break;
         }
-        printfDx("reach:%d ", isReach(puzzle, (playerNum % 2) + 1));
+        if (isDraw(puzzle)) {
+            showFinishedStatus(puzzle);
+            showDraw();
+            break;
+        }
         playerNum++;
     }
 }

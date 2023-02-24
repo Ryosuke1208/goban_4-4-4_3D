@@ -58,6 +58,9 @@
     <ClCompile Include="evaluation.cpp">
       <Filter>alphaBeta</Filter>
     </ClCompile>
+    <ClCompile Include="isDraw.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="player">
