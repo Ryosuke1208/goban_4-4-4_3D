@@ -10,7 +10,7 @@
     <ClCompile Include="cpuEasyProc.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
-    <ClCompile Include="decideByValue.cpp">
+    <ClCompile Include="easyValue.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
     <ClCompile Include="findBestMove.cpp">
@@ -60,6 +60,12 @@
     </ClCompile>
     <ClCompile Include="isDraw.cpp">
       <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="cpuNormalProc.cpp">
+      <Filter>cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="normalValue.cpp">
+      <Filter>cpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

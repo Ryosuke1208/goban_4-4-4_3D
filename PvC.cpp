@@ -5,6 +5,7 @@
 
 void playerPutProc(int [][FIGURE_NUM][FIGURE_NUM], int);
 void cpuEasyProc(int [][FIGURE_NUM][FIGURE_NUM], int);
+void cpuNormalProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum);
 int isDone(int [][FIGURE_NUM][FIGURE_NUM], int);
 void showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM]);
 void showWinPvC(int);
@@ -13,7 +14,7 @@ void showDraw();
 
 void PvC() {
     // 変数の定義
-    int playerNum = 0;
+    int playerNum = 1;
     int puzzle[FIGURE_NUM][FIGURE_NUM][FIGURE_NUM] =
     {
         {{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG}},
@@ -27,7 +28,7 @@ void PvC() {
             playerPutProc(puzzle, (playerNum % 2) + 1);
         }
         else { // CPUが出す手を決める処理
-            cpuEasyProc(puzzle, (playerNum % 2) + 1);
+            cpuNormalProc(puzzle, (playerNum % 2) + 1);
         }
         // ビンゴになったかどうかのチェック
         if (isDone(puzzle, (playerNum % 2) + 1)) {

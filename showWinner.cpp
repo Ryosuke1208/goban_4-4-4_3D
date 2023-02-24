@@ -47,7 +47,7 @@ void showWinPvC(int playerNum) {
 }
 
 void showDraw() {
-    WaitTimer(3000);// 前のエンター入力と同時に読み取る可能性があるので少し止める
+    WaitTimer(1000);// 前のエンター入力と同時に読み取る可能性があるので少し止める
     unsigned int Cr;
     ClearDrawScreen();
     SetFontSize(100);

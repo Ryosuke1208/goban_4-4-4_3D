@@ -4,7 +4,7 @@
 //************************************************
 #include "define.h"
 
-boolean decideByValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z) {
+boolean easyValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z) {
     int i, j, k;
     int cnt;
     int max = -999;
@@ -111,6 +111,4 @@ boolean decideByValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int*
         }
     }
     return true;
-
-    return false; //’u‚¯‚éêŠ‚ª‚È‚©‚Á‚½
 }

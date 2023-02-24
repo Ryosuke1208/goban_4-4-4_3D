@@ -45,6 +45,7 @@ boolean search(int order, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, in
         }
         else return false;
     }
+  
     if (cnt) return true; // ‘Šè‚ªƒrƒ“ƒS‚É‚È‚é‚È‚ç‘j~‚·‚éèA©•ª‚ªƒrƒ“ƒS‚É‚È‚é‚È‚ç‚»‚Ìè‚ğo‚·
     else return false;
 }

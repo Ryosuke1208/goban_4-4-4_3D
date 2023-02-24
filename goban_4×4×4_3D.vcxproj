@@ -154,13 +154,15 @@
     <ClCompile Include="alphaBeta.cpp" />
     <ClCompile Include="checkBingo.cpp" />
     <ClCompile Include="cpuEasyProc.cpp" />
-    <ClCompile Include="decideByValue.cpp" />
+    <ClCompile Include="cpuNormalProc.cpp" />
+    <ClCompile Include="easyValue.cpp" />
     <ClCompile Include="evaluation.cpp" />
     <ClCompile Include="fill.cpp" />
     <ClCompile Include="findBestMove.cpp" />
     <ClCompile Include="isDone.cpp" />
     <ClCompile Include="isDraw.cpp" />
     <ClCompile Include="isReach.cpp" />
+    <ClCompile Include="normalValue.cpp" />
     <ClCompile Include="playerCanPut.cpp" />
     <ClCompile Include="makeFigure.cpp" />
     <ClCompile Include="playerPutProc.cpp" />

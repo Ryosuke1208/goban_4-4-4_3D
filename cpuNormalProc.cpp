@@ -3,12 +3,12 @@
 //************************************************
 #include "define.h"
 
-void makeFigure(int [][FIGURE_NUM][FIGURE_NUM]);
-void findBestMove(int, int [][FIGURE_NUM][FIGURE_NUM], int*, int*, int*, int);
-int search(int, int [][FIGURE_NUM][FIGURE_NUM], int, int, int, int);
-boolean easyValue(int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
+void makeFigure(int[][FIGURE_NUM][FIGURE_NUM]);
+void findBestMove(int, int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*, int);
+int search(int, int[][FIGURE_NUM][FIGURE_NUM], int, int, int, int);
+boolean normalValue(int[][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
 
-void cpuEasyProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
+void cpuNormalProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
     int x = 0, y = 0, z = 0;
     int order = 1;
     while (1) {
@@ -20,7 +20,7 @@ void cpuEasyProc(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
             if (x != 4) break;
             order++;
             if (order == 5) {
-                easyValue(puzzle, &x, &y, &z);
+                normalValue(puzzle, &x, &y, &z);
                 break;
             }
         }
