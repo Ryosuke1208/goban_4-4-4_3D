@@ -5,6 +5,7 @@
 #include "define.h"
 
 void showWinPvP(int playerNum) {
+    WaitTimer(1000);// 前のエンター入力と同時に読み取る可能性があるので少し止める
     unsigned int Cr;
     ClearDrawScreen();
     SetFontSize(100);
@@ -25,6 +26,7 @@ void showWinPvP(int playerNum) {
 }
 
 void showWinPvC(int playerNum) {
+    WaitTimer(1000);// 前のエンター入力と同時に読み取る可能性があるので少し止める
     unsigned int Cr;
     ClearDrawScreen();
     SetFontSize(100);
@@ -45,6 +47,7 @@ void showWinPvC(int playerNum) {
 }
 
 void showDraw() {
+    WaitTimer(3000);// 前のエンター入力と同時に読み取る可能性があるので少し止める
     unsigned int Cr;
     ClearDrawScreen();
     SetFontSize(100);
