@@ -13,7 +13,7 @@ void showDraw();
 
 void PvC() {
     // ïœêîÇÃíËã`
-    int playerNum = 1;
+    int playerNum = 0;
     int puzzle[FIGURE_NUM][FIGURE_NUM][FIGURE_NUM] =
     {
         {{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG}},
