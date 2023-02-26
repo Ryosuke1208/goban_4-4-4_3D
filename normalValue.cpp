@@ -10,12 +10,11 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
     int i, j, k;
     int cnt, cnt2;
     int max = -999;
-    int flag = 1;
     //各マスの評価値 単純にそこに置いた時のビンゴになり得る数を基にしている
     int value[FIGURE_NUM][FIGURE_NUM][FIGURE_NUM] =
     {
         {{7,4,4,7},{4,4,4,4},{4,4,4,4},{7,4,4,7}},
-        {{4,4,4,4},{4,10,10,4},{4,10,10,4},{4,4,4,4}},
+        {{4,15,15,4},{15,10,10,15},{15,10,10,15},{4,15,15,4}},
         {{4,4,4,4},{4,4,4,4},{4,4,4,4},{4,4,4,4}},
         {{7,4,4,7},{4,2,2,4},{4,2,2,4},{7,4,4,7}}
     };
@@ -32,12 +31,89 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
     if (puzzle[3][3][0] == P1) value[1][3][0] += 30;
     if (puzzle[3][3][3] == P1) value[1][3][3] += 30;
     // 自分が置いた時も変更
-    if (puzzle[3][0][0] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][0][0] += 30;
-    if (puzzle[3][0][3] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][0][3] += 30;
-    if (puzzle[3][3][0] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][3][0] += 30;
-    if (puzzle[3][3][3] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][3][3] += 30;
+    //if (puzzle[3][0][0] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][0][0] += 30;
+    //if (puzzle[3][0][3] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][0][3] += 30;
+    //if (puzzle[3][3][0] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][3][0] += 30;
+    //if (puzzle[3][3][3] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][3][3] += 30;
 
     // クロスアタック対策
+    // 斜め止め
+    if (puzzle[3][0][3] == P1 && puzzle[3][3][3] == P1) {
+        for (j = 1; j < 3; j++) {
+            if (puzzle[2][j][3] == OK) {
+                puzzle[2][j][3] = P2;
+                puzzle[1][j][3] = OK;
+                //プレイヤー側がリーチにならないかどうか
+                if (isReach(puzzle, P1) == 0) {
+                    puzzle[2][j][3] = OK;
+                    puzzle[1][j][3] = NG;
+                    *x = 2;
+                    *y = j;
+                    *z = 3;
+                    return true;
+                }
+                puzzle[2][j][3] = OK;
+                puzzle[1][j][3] = NG;
+            }
+        }
+    }
+    if (puzzle[3][0][0] == P1 && puzzle[3][0][3] == P1) {
+        for (k = 1; k < 3; k++) {
+            if (puzzle[2][0][k] == OK) {
+                puzzle[2][0][k] = P2;
+                puzzle[1][0][k] = OK;
+                //プレイヤー側がリーチにならないかどうか
+                if (isReach(puzzle, P1) == 0) {
+                    puzzle[2][0][k] = OK;
+                    puzzle[1][0][k] = NG;
+                    *x = 2;
+                    *y = 0;
+                    *z = k;
+                    return true;
+                }
+                puzzle[2][0][k] = OK;
+                puzzle[1][0][k] = NG;
+            }
+        }
+    }
+    if (puzzle[3][3][0] == P1 && puzzle[3][3][3] == P1) {
+        for (k = 1; k < 3; k++) {
+            if (puzzle[2][3][k] == OK) {
+                puzzle[2][3][k] = P2;
+                puzzle[1][3][k] = OK;
+                //プレイヤー側がリーチにならないかどうか
+                if (isReach(puzzle, P1) == 0) {
+                    puzzle[2][3][k] = OK;
+                    puzzle[1][3][k] = NG;
+                    *x = 2;
+                    *y = 3;
+                    *z = k;
+                    return true;
+                }
+                puzzle[2][3][k] = OK;
+                puzzle[1][3][k] = NG;
+            }
+        }
+    }
+    if (puzzle[3][0][0] == P1 && puzzle[3][3][0] == P1) {
+        for (j = 1; j < 3; j++) {
+            if (puzzle[2][j][0] == OK) {
+                puzzle[2][j][0] = P2;
+                puzzle[1][j][0] = OK;
+                //プレイヤー側がリーチにならないかどうか
+                if (isReach(puzzle, P1) == 0) {
+                    puzzle[2][j][0] = OK;
+                    puzzle[1][j][0] = NG;
+                    *x = 2;
+                    *y = j;
+                    *z = 0;
+                    return true;
+                }
+                puzzle[2][j][0] = OK;
+                puzzle[1][j][0] = NG;
+            }
+        }
+    }
     // 垂直止め
     for (j = 0; j < 4; j++) {
         for (k = 0; k < 4; k++) {
@@ -53,7 +129,7 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
             if (puzzle[3][j][k] == P2) cnt2++;
             if (cnt == 2 && cnt2 == 0) {
                 for (i = 3; i >= 0; i--) {
-                    if (puzzle[i][j][k] == 0) {
+                    if (puzzle[i][j][k] == OK) {
                         puzzle[i][j][k] = P2;
                         if (i > 0) puzzle[i - 1][j][k] = OK;
                         //プレイヤー側がリーチにならないかどうか
@@ -87,7 +163,7 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
             if (puzzle[i][j][3] == P2) cnt2++;
             if (cnt == 2 && cnt2 == 0) {
                 for (k = 0; k < 4; k++) {
-                    if (puzzle[i][j][k] == 0) {
+                    if (puzzle[i][j][k] == OK) {
                         puzzle[i][j][k] = P2;
                         if (i > 0) puzzle[i - 1][j][k] = OK;
                         //プレイヤー側がリーチにならないかどうか
@@ -121,7 +197,7 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
             if (puzzle[i][3][k] == P2) cnt2++;
             if (cnt == 2 && cnt2 == 0) {
                 for (j = 0; j < 4; j++) {
-                    if (puzzle[i][j][k] == 0) {
+                    if (puzzle[i][j][k] == OK) {
                         puzzle[i][j][k] = P2;
                         if (i > 0) puzzle[i - 1][j][k] = OK;
                         //プレイヤー側がリーチにならないかどうか
@@ -140,58 +216,6 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
             }
         }
     }
-    /*if (puzzle[3][1][1] == OK) {
-        cnt = 0;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][1][0] == P1) cnt++;
-        if (puzzle[3][1][3] == P1) cnt++;
-        if (puzzle[3][3][1] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 1;
-            *z = 1;
-            return true;
-        }
-    }
-    if (puzzle[3][2][2] == OK) {
-        cnt = 0;
-        if (puzzle[3][0][2] == P1) cnt++;
-        if (puzzle[3][2][0] == P1) cnt++;
-        if (puzzle[3][2][3] == P1) cnt++;
-        if (puzzle[3][3][2] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 2;
-            *z = 2;
-            return true;
-        }
-    }
-    if (puzzle[3][2][1] == OK) {
-        cnt = 0;
-        if (puzzle[3][2][0] == P1) cnt++;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][3][1] == P1) cnt++;
-        if (puzzle[3][2][3] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 2;
-            *z = 1;
-            return true;
-        }
-    }
-    if (puzzle[3][1][2] == OK) {
-        cnt = 0;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][3][1] == P1) cnt++;
-        if (puzzle[3][1][3] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 1;
-            *z = 2;
-            return true;
-        }
-    }*/
 
     // 評価値の高い手が見つかった時はそこを返す
     for (i = 3; i >= 0; i--) {

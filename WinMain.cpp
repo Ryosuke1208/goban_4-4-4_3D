@@ -1,7 +1,8 @@
 #include "define.h"
 
+void showTitle(int*, int*, int*);
 void PvP();
-void PvC();
+void PvC(int, int);
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)
 {
@@ -12,11 +13,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
     ChangeWindowMode(TRUE);
     SetDrawScreen(DX_SCREEN_BACK);
     SetMouseDispFlag(TRUE);
+    int m, d, f;
     //************************************************
     // ÉQÅ[ÉÄÇÃèàóù
     //************************************************
-    PvC();
-    //PvP();
+    showTitle(&m, &d, &f);
+    if (m == 0) PvP();
+    else PvC(d, f);
+
 
 	DxLib_End(); 
 

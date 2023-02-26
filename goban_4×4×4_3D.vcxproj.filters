@@ -67,6 +67,9 @@
     <ClCompile Include="normalValue.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
+    <ClCompile Include="showTitle.cpp">
+      <Filter>title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="player">
@@ -83,6 +86,9 @@
     </Filter>
     <Filter Include="alphaBeta">
       <UniqueIdentifier>{b36bee14-a792-4ab9-9251-afdae332c2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="title">
+      <UniqueIdentifier>{b76ae049-35ef-4a35-9ebd-6c7b831e1f8f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -16,8 +16,8 @@ void showWinPvP(int playerNum) {
         Cr = LIGHT_BLUE;
         DrawString(103, 300, "PLAYER2 WIN", Cr);
     }
-    SetFontSize(25);
-    DrawString(325, 500, "press enter", Cr);
+    SetFontSize(50);
+    DrawString(260, 500, "press enter", Cr);
     ScreenFlip();
     while (1) {
         if (CheckHitKey(KEY_INPUT_RETURN)) break;
@@ -37,8 +37,8 @@ void showWinPvC(int playerNum) {
         Cr = LIGHT_BLUE;
         DrawString(103, 300, "  CPU  WIN  ", Cr);
     }
-    SetFontSize(25);
-    DrawString(325, 500, "press enter", Cr);
+    SetFontSize(50);
+    DrawString(260, 500, "press enter", Cr);
     ScreenFlip();
     while (1) {
         if (CheckHitKey(KEY_INPUT_RETURN)) break;
@@ -52,8 +52,8 @@ void showDraw() {
     SetFontSize(100);
     Cr = LIGHT_BLUE;
     DrawString(103, 300, "    DRAW    ", Cr);
-    SetFontSize(25);
-    DrawString(325, 500, "press enter", Cr);
+    SetFontSize(50);
+    DrawString(260, 500, "press enter", Cr);
     ScreenFlip();
     while (1) {
         if (CheckHitKey(KEY_INPUT_RETURN)) break;

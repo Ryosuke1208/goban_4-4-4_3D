@@ -4,37 +4,40 @@
 #include "define.h"
 
 int isDone(int[][FIGURE_NUM][FIGURE_NUM], int);
-void findBestMove(int, int [][FIGURE_NUM][FIGURE_NUM], int*, int*, int*, int);
+void findBestMove(int, int [][FIGURE_NUM][FIGURE_NUM], int*, int*, int*);
 int isReach(int[][FIGURE_NUM][FIGURE_NUM], int);
 
-boolean search(int order, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, int z, int playerNumber) {
-    int cnt = 0, cnt2 = 0;
+boolean search(int depth, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, int z) {
+    int cnt1 = 0, cnt2 = 0;
     
-    // 自分がビンゴにならないかの確認
-    if (order == 1) {
-        puzzle[x][y][z] = playerNumber;
-        cnt = isDone(puzzle, playerNumber);
+    // CPU側がビンゴ出来るときはそこで決定
+    if (depth == 1) {
+        puzzle[x][y][z] = P2;
+        cnt1 = isDone(puzzle, P2);
         puzzle[x][y][z] = OK;
     }
-    // 相手がビンゴにならないかの確認
-    else if (order == 2) {
-        puzzle[x][y][z] = (playerNumber % 2) + 1;
-        cnt = isDone(puzzle, (playerNumber % 2) + 1);
+    // プレイヤー側がビンゴになるときは阻止する手で決定
+    else if (depth == 2) {
+        puzzle[x][y][z] = P1;
+        cnt1 = isDone(puzzle, P1);
         puzzle[x][y][z] = OK;
     }
     // リーチになる手を攻めていく
-    else if (order == 3) {
+    else if (depth == 3) {
         puzzle[x][y][z] = P2;
         if (x > 0) puzzle[x - 1][y][z] = OK;
-        //プレイヤー側がリーチにならないかどうか
-        cnt = isReach(puzzle, P1);
+        //プレイヤー側がリーチになる数を数える
+        cnt1 = isReach(puzzle, P1);
+        //CPU側がリーチになる数を数える
         cnt2 = isReach(puzzle, P2);
         puzzle[x][y][z] = OK;
         if (x > 0) puzzle[x - 1][y][z] = NG;
-        if (cnt == 0 && cnt2 >= 2) return true;
+        //プレイヤーがリーチにならずに、
+        //CPU側がリーチ×2以上になる時はそこで決定
+        if (cnt1 == 0 && cnt2 >= 2) return true;
         else return false;
     }  
-    if (cnt) return true;
+    if (cnt1) return true;
     else return false;
 }
 
