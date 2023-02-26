@@ -5,11 +5,11 @@
 
 int isDone(int[][FIGURE_NUM][FIGURE_NUM], int);
 void findBestMove(int, int [][FIGURE_NUM][FIGURE_NUM], int*, int*, int*, int);
-int isReach(int [][FIGURE_NUM][FIGURE_NUM], int);
+int isReach(int[][FIGURE_NUM][FIGURE_NUM], int);
 
 boolean search(int order, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, int z, int playerNumber) {
-    int cnt = 0;
-    int x2 = 0, y2 = 0, z2 = 0;
+    int cnt = 0, cnt2 = 0;
+    
     // 自分がビンゴにならないかの確認
     if (order == 1) {
         puzzle[x][y][z] = playerNumber;
@@ -24,11 +24,15 @@ boolean search(int order, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, in
     }
     // リーチになる手を攻めていく
     else if (order == 3) {
-        puzzle[x][y][z] = playerNumber;
-        if(x > 0) puzzle[x - 1][y][z] = OK;
-        cnt = isReach(puzzle, playerNumber);
+        puzzle[x][y][z] = P2;
+        if (x > 0) puzzle[x - 1][y][z] = OK;
+        //プレイヤー側がリーチにならないかどうか
+        cnt = isReach(puzzle, P1);
+        cnt2 = isReach(puzzle, P2);
         puzzle[x][y][z] = OK;
         if (x > 0) puzzle[x - 1][y][z] = NG;
+        if (cnt == 0 && cnt2 >= 2) return true;
+        else return false;
     }  
     if (cnt) return true;
     else return false;

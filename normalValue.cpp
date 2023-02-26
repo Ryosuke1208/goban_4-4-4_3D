@@ -38,6 +38,41 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
     if (puzzle[3][3][3] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][3][3] += 30;
 
     // クロスアタック対策
+    // 垂直止め
+    for (j = 0; j < 4; j++) {
+        for (k = 0; k < 4; k++) {
+            cnt = 0;
+            cnt2 = 0;
+            if (puzzle[0][j][k] == P1) cnt++;
+            if (puzzle[1][j][k] == P1) cnt++;
+            if (puzzle[2][j][k] == P1) cnt++;
+            if (puzzle[3][j][k] == P1) cnt++;
+            if (puzzle[0][j][k] == P2) cnt2++;
+            if (puzzle[1][j][k] == P2) cnt2++;
+            if (puzzle[2][j][k] == P2) cnt2++;
+            if (puzzle[3][j][k] == P2) cnt2++;
+            if (cnt == 2 && cnt2 == 0) {
+                for (i = 3; i >= 0; i--) {
+                    if (puzzle[i][j][k] == 0) {
+                        puzzle[i][j][k] = P2;
+                        if (i > 0) puzzle[i - 1][j][k] = OK;
+                        //プレイヤー側がリーチにならないかどうか
+                        if (isReach(puzzle, P1) == 0) {
+                            puzzle[i][j][k] = OK;
+                            if (i > 0) puzzle[i - 1][j][k] = NG;
+                            *x = i;
+                            *y = j;
+                            *z = k;
+                            return true;
+                        }
+                        puzzle[i][j][k] = OK;
+                        if (i > 0) puzzle[i - 1][j][k] = NG;
+                    }
+                }
+            }
+        }
+    }
+
     for (i = 3; i >= 0; i--) {
         for (j = 0; j < 4; j++) {
             cnt = 0;
@@ -53,10 +88,19 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
             if (cnt == 2 && cnt2 == 0) {
                 for (k = 0; k < 4; k++) {
                     if (puzzle[i][j][k] == 0) {
-                        *x = i;
-                        *y = j;
-                        *z = k;
-                        return true;
+                        puzzle[i][j][k] = P2;
+                        if (i > 0) puzzle[i - 1][j][k] = OK;
+                        //プレイヤー側がリーチにならないかどうか
+                        if (isReach(puzzle, P1) == 0) {
+                            puzzle[i][j][k] = OK;
+                            if (i > 0) puzzle[i - 1][j][k] = NG;
+                            *x = i;
+                            *y = j;
+                            *z = k;
+                            return true;
+                        }
+                        puzzle[i][j][k] = OK;
+                        if (i > 0) puzzle[i - 1][j][k] = NG;
                     }
 
                 }
@@ -78,12 +122,20 @@ boolean normalValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z
             if (cnt == 2 && cnt2 == 0) {
                 for (j = 0; j < 4; j++) {
                     if (puzzle[i][j][k] == 0) {
-                        *x = i;
-                        *y = j;
-                        *z = k;
-                        return true;
+                        puzzle[i][j][k] = P2;
+                        if (i > 0) puzzle[i - 1][j][k] = OK;
+                        //プレイヤー側がリーチにならないかどうか
+                        if (isReach(puzzle, P1) == 0) {
+                            puzzle[i][j][k] = OK;
+                            if (i > 0) puzzle[i - 1][j][k] = NG;
+                            *x = i;
+                            *y = j;
+                            *z = k;
+                            return true;
+                        }
+                        puzzle[i][j][k] = OK;
+                        if (i > 0) puzzle[i - 1][j][k] = NG;
                     }
-
                 }
             }
         }
