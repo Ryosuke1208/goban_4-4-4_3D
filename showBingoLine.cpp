@@ -1,11 +1,11 @@
 //************************************************
-// 4~4~4‚Ì}Œ`‚Ìì¬
+// 4~4~4‚Ì}Œ`‚Ìì¬{ƒrƒ“ƒSƒ‰ƒCƒ“‚Ìì¬
 //************************************************
 #include "define.h"
 
 void fill(int, int, int, int);
 
-void makeFigure(int puzzle[][FIGURE_NUM][FIGURE_NUM], int d, int m) {
+void showBingoLine(int puzzle[][FIGURE_NUM][FIGURE_NUM], int d, int m, int pNum, struct BINGO b) {
     static int i, j, k;
     SetFontSize(80);
     // }Œ`‚Ì•\¦
@@ -29,18 +29,17 @@ void makeFigure(int puzzle[][FIGURE_NUM][FIGURE_NUM], int d, int m) {
             }
         }
     }
+    for (i = 0; i < 4; i++) {
+        if (pNum % 2 == 0) {
+            fill(b.bingoX[i], b.bingoY[i], b.bingoZ[i], BINGO_P1);
+        }
+        else {
+            fill(b.bingoX[i], b.bingoY[i], b.bingoZ[i], BINGO_P2);
+        }
+    }
     //VS CPU‚Ì‚¾‚¯•\¦
     if (m == 1) {
         DrawString(50, 700, "VS CPU", BLACK);
-        if (d == 0) {
-            DrawString(400, 700, "EASY", BLACK);
-        }
-        else if (d == 1) {
-            DrawString(400, 700, "NORMAL", BLACK);
-        }
-        else if (d == 2) {
-            DrawString(400, 700, "DIFFICULT", BLACK);
-        }
     }
     else {
         DrawString(50, 700, "VS ÌßÚ²Ô°", BLACK);

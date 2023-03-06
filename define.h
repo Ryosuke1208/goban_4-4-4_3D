@@ -4,7 +4,7 @@
 // 図形関係
 #define LINE_NUM 5 // 線の数
 #define LINE_START_X 150 // 一番上の図形のX座標(図形の左下の座標)
-#define LINE_START_Y 220 // 一番上の図形のY座標(図形の左下の座標)
+#define LINE_START_Y 170 // 一番上の図形のY座標(図形の左下の座標)
 #define LINE_COL_W 80 // 縦の線の幅
 #define LINE_ROW_H 30 // 横の線の幅
 #define FIGURE_NUM 4 // 図形の数(4面)
@@ -16,8 +16,18 @@
 #define LIGHT_GRAY GetColor(224, 224, 224)
 #define LIGHT_RED GetColor(255, 153, 153)
 #define LIGHT_BLUE GetColor(153, 204, 255)
+#define RED GetColor(255, 51, 51)
+#define BLUE GetColor(51, 51, 255)
 // 盤面関係
 #define NG -1
 #define OK 0
 #define P1 1
 #define P2 2
+#define BINGO_P1 3
+#define BINGO_P2 4
+// ビンゴになった手を返す構造体
+struct BINGO {
+	int bingoX[4];
+	int bingoY[4];
+	int bingoZ[4];
+};

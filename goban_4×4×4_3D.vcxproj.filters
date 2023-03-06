@@ -7,9 +7,6 @@
     <ClCompile Include="playerPutProc.cpp">
       <Filter>player</Filter>
     </ClCompile>
-    <ClCompile Include="cpuEasyProc.cpp">
-      <Filter>cpu</Filter>
-    </ClCompile>
     <ClCompile Include="easyValue.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
@@ -24,9 +21,6 @@
     </ClCompile>
     <ClCompile Include="PvP.cpp">
       <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="checkBingo.cpp">
-      <Filter>tools</Filter>
     </ClCompile>
     <ClCompile Include="fill.cpp">
       <Filter>tools</Filter>
@@ -49,19 +43,10 @@
     <ClCompile Include="isReach.cpp">
       <Filter>tools</Filter>
     </ClCompile>
-    <ClCompile Include="alphaBeta.cpp">
-      <Filter>alphaBeta</Filter>
-    </ClCompile>
-    <ClCompile Include="PvC_alphaBeta.cpp">
-      <Filter>alphaBeta</Filter>
-    </ClCompile>
-    <ClCompile Include="evaluation.cpp">
-      <Filter>alphaBeta</Filter>
-    </ClCompile>
     <ClCompile Include="isDraw.cpp">
       <Filter>tools</Filter>
     </ClCompile>
-    <ClCompile Include="cpuNormalProc.cpp">
+    <ClCompile Include="cpuPutProc.cpp">
       <Filter>cpu</Filter>
     </ClCompile>
     <ClCompile Include="normalValue.cpp">
@@ -69,6 +54,15 @@
     </ClCompile>
     <ClCompile Include="showTitle.cpp">
       <Filter>title</Filter>
+    </ClCompile>
+    <ClCompile Include="difficultValue.cpp">
+      <Filter>cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="getBingoLine.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="showBingoLine.cpp">
+      <Filter>tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +77,6 @@
     </Filter>
     <Filter Include="tools">
       <UniqueIdentifier>{32c1fa5d-6658-440b-aec9-c2bde20281f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="alphaBeta">
-      <UniqueIdentifier>{b36bee14-a792-4ab9-9251-afdae332c2b6}</UniqueIdentifier>
     </Filter>
     <Filter Include="title">
       <UniqueIdentifier>{b76ae049-35ef-4a35-9ebd-6c7b831e1f8f}</UniqueIdentifier>

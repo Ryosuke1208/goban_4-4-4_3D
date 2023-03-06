@@ -47,13 +47,11 @@ void showWinPvC(int playerNum) {
 
 void showDraw() {
     WaitTimer(1000);// 前のエンター入力と同時に読み取る可能性があるので少し止める
-    unsigned int Cr;
     ClearDrawScreen();
     SetFontSize(100);
-    Cr = LIGHT_BLUE;
-    DrawString(103, 300, "    DRAW    ", Cr);
+    DrawString(103, 300, "    DRAW    ", BLACK);
     SetFontSize(50);
-    DrawString(260, 500, "press enter", Cr);
+    DrawString(260, 500, "press enter", BLACK);
     ScreenFlip();
     while (1) {
         if (CheckHitKey(KEY_INPUT_RETURN)) break;

@@ -7,7 +7,7 @@
 void showTitle(int *m, int *d, int *f) {
 	unsigned int Cr = GetColor(255, 255, 153);
 	int fontHandle1, fontHandle2, fontHandle3;
-	int mode = 0, difficulty = 0, first = 0;
+	int mode = 1, difficulty = 1, first = 0;
 	int mouseX, mouseY;
 	fontHandle1 = CreateFontToHandle(NULL, 100, 1, DX_FONTTYPE_ANTIALIASING);
 	fontHandle2 = CreateFontToHandle(NULL, 30, 1, DX_FONTTYPE_ANTIALIASING);
@@ -52,13 +52,13 @@ void showTitle(int *m, int *d, int *f) {
 			else if (first == 1) DrawBoxAA(405.0f, 545.0f, 795.0f, 625.0f, Cr, TRUE);
 		}
 
-		DrawStringToHandle(120, 560, "æ@s", BLACK, fontHandle3);
+		DrawStringToHandle(50, 560, "ÌßÚ²Ô°‚ªæs", BLACK, fontHandle3);
 		DrawLineAA(400.0f, 540.0f, 400.0f, 630.0f, BLACK);
-		DrawStringToHandle(520, 560, "Œã@s", BLACK, fontHandle3);
+		DrawStringToHandle(450, 560, "ÌßÚ²Ô°‚ªŒãs", BLACK, fontHandle3);
 		DrawLineAA(0.0f, 630.0f, 800.0f, 630.0f, BLACK);
 		
-		if (mouseX > 0 && mouseX < 800 && mouseY > 630 && mouseY < 800) {
-			DrawBoxAA(5.0f, 635.0f, 795.0f, 795.0f, LIGHT_RED, TRUE);
+		if (mouseX > 0 && mouseX < 800 && mouseY > 630 && mouseY < 710) {
+			DrawBoxAA(5.0f, 635.0f, 795.0f, 705.0f, LIGHT_BLUE, TRUE);
 			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
 				*m = mode;
 				*d = difficulty;
@@ -66,8 +66,19 @@ void showTitle(int *m, int *d, int *f) {
 				break;
 			}
 		}
-		DrawStringToHandle(270, 670, "START", BLACK, fontHandle1);
 
+		DrawStringToHandle(275, 645, "‚r‚s‚`‚q‚s", BLACK, fontHandle3);
+		DrawLineAA(0.0f, 710.0f, 800.0f, 710.0f, BLACK);
+
+		if (mouseX > 0 && mouseX < 800 && mouseY > 710 && mouseY < 800) {
+			DrawBoxAA(5.0f, 715.0f, 795.0f, 795.0f, LIGHT_RED, TRUE);
+			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+				*m = -1;
+				break;
+			}
+		}
+
+		DrawStringToHandle(220, 730, "ƒQ[ƒ€‚ð‚â‚ß‚é", BLACK, fontHandle3);
 
 		if (mouseX > 0 && mouseX < 400 && mouseY > 360 && mouseY < 450 && (GetMouseInput() & MOUSE_INPUT_LEFT) != 0 ) mode = 0;
 		if (mouseX > 400 && mouseX < 800 && mouseY > 360 && mouseY < 450 && (GetMouseInput() & MOUSE_INPUT_LEFT) != 0) mode = 1;

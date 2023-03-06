@@ -16,6 +16,12 @@ void fill(int x, int y, int z, int status) {
 	case P2:
 		color = LIGHT_BLUE; // ライトブルー PLAYER2 or COMPUTERの色
 		break;
+	case BINGO_P1:
+		color = RED; // P1がビンゴの時の表示色
+		break;
+	case BINGO_P2:
+		color = BLUE; // P2がビンゴの時の表示色
+		break;
 	default:
 		break;
 	}

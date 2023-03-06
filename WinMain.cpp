@@ -17,9 +17,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
     //************************************************
     // ÉQÅ[ÉÄÇÃèàóù
     //************************************************
-    showTitle(&m, &d, &f);
-    if (m == 0) PvP();
-    else PvC(d, f);
+    while (1) {
+        showTitle(&m, &d, &f);
+        if (m == 0) PvP();
+        else if (m == 1) PvC(d, f);
+        else break;
+    }
 
 
 	DxLib_End(); 

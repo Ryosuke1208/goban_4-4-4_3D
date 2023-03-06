@@ -151,12 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="alphaBeta.cpp" />
-    <ClCompile Include="checkBingo.cpp" />
-    <ClCompile Include="cpuEasyProc.cpp" />
-    <ClCompile Include="cpuNormalProc.cpp" />
+    <ClCompile Include="cpuPutProc.cpp" />
+    <ClCompile Include="difficultValue.cpp" />
     <ClCompile Include="easyValue.cpp" />
-    <ClCompile Include="evaluation.cpp" />
     <ClCompile Include="fill.cpp" />
     <ClCompile Include="findBestMove.cpp" />
     <ClCompile Include="isDone.cpp" />
@@ -167,9 +164,10 @@
     <ClCompile Include="makeFigure.cpp" />
     <ClCompile Include="playerPutProc.cpp" />
     <ClCompile Include="PvC.cpp" />
-    <ClCompile Include="PvC_alphaBeta.cpp" />
     <ClCompile Include="PvP.cpp" />
     <ClCompile Include="search.cpp" />
+    <ClCompile Include="getBingoLine.cpp" />
+    <ClCompile Include="showBingoLine.cpp" />
     <ClCompile Include="showFinishedStatus.cpp" />
     <ClCompile Include="showTitle.cpp" />
     <ClCompile Include="showWinner.cpp" />

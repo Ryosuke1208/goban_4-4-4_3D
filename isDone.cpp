@@ -1,5 +1,5 @@
 //************************************************
-//その時点でパズルがビンゴになっている数を調べる
+// その時点でパズルがビンゴになっている数を調べる
 // 80パターンくらいしかないし、マジックナンバー
 // を消すまでもない気がするので残してるけど、
 // 消したいならなら消してくれ
@@ -42,7 +42,7 @@ int isDone(int puzzle[][FIGURE_NUM][FIGURE_NUM], int playerNum) {
 				puzzle[2][y][z] == playerNum && puzzle[3][y][z] == playerNum) cnt++;
 		}
 	}
-	//立体的な視点での斜めのチェック
+	// 立体的な視点での斜めのチェック
 	if(puzzle[0][0][0] == playerNum && puzzle[1][1][1] == playerNum &&
 		puzzle[2][2][2] == playerNum && puzzle[3][3][3] == playerNum) cnt++;;
 	if (puzzle[0][3][3] == playerNum && puzzle[1][2][2] == playerNum &&

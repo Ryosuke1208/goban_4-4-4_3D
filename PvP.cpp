@@ -3,12 +3,13 @@
 //************************************************
 #include "define.h"
 
-void playerPutProc(int [][FIGURE_NUM][FIGURE_NUM], int);
+int playerPutProc(int [][FIGURE_NUM][FIGURE_NUM], int, int, int, int temp[][3]);
 int isDone(int [][FIGURE_NUM][FIGURE_NUM], int);
-void showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM]);
+int showFinishedStatus(int[][FIGURE_NUM][FIGURE_NUM], int, int, int, struct BINGO);
 void showWinPvP(int);
 boolean isDraw(int [][FIGURE_NUM][FIGURE_NUM]);
 void showDraw();
+struct BINGO getBingoLine(int[][FIGURE_NUM][FIGURE_NUM], int);
 
 void PvP() {
     // 変数の定義
@@ -20,20 +21,23 @@ void PvP() {
         {{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG},{NG,NG,NG,NG}},
         {{OK,OK,OK,OK},{OK,OK,OK,OK},{OK,OK,OK,OK},{OK,OK,OK,OK}}
     };
-    //ゲーム処理
+    int temp[2][3];
+    struct BINGO b = { {-10,-10,-10,-10},{-1,-1,-1,-1},{-1,-1,-1,-1} };
+    // ゲーム処理
     while (1) {
-        //プレイヤーが出す手を決める処理
-        if (playerNum % 2 == 0) playerPutProc(puzzle, (playerNum % 2) + 1);
-        else playerPutProc(puzzle, (playerNum % 2) + 1);
-        //ビンゴになったかどうかのチェック
+        // プレイヤーが出す手を決める処理
+        if (playerNum % 2 == 0) playerPutProc(puzzle, (playerNum % 2) + 1, -1, 0, temp);
+        else playerPutProc(puzzle, (playerNum % 2) + 1, -1, 0, temp);
+        // ビンゴになったかどうかのチェック
         if (isDone(puzzle, (playerNum % 2) + 1)) {
-            showFinishedStatus(puzzle);
+            b = getBingoLine(puzzle, (playerNum % 2) + 1);
+            showFinishedStatus(puzzle, -1, 0, playerNum, b);
             showWinPvP((playerNum % 2) + 1);
             break;
         }
-        //ドローになったかどうかのチェック
+        // ドローになったかどうかのチェック
         if (isDraw(puzzle)) {
-            showFinishedStatus(puzzle);
+            showFinishedStatus(puzzle, -1, 0, playerNum, b);
             showDraw();
             break;
         }

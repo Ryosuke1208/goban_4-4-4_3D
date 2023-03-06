@@ -1,101 +1,52 @@
 //************************************************
-// 深さの探索で見つからなかったときに評価値で
-// 決定する
+// CPUの強さ「弱い」の評価関数
+// ダブルアタックをすれば簡単に勝てる
 //************************************************
 #include "define.h"
 
+int isReach(int[][FIGURE_NUM][FIGURE_NUM], int);
+
 boolean easyValue(int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z) {
     int i, j, k;
-    int cnt;
     int max = -999;
-    int flag = 1;
-    // 各マスの評価値 単純にそこに置いた時のビンゴになり得る数を基にしている
+    int flag = 0;
+    //各マスの評価値 単純にそこに置いた時のビンゴになり得る数を基にしている
     int value[FIGURE_NUM][FIGURE_NUM][FIGURE_NUM] =
     {
         {{7,4,4,7},{4,4,4,4},{4,4,4,4},{7,4,4,7}},
-        {{4,4,4,4},{4,10,10,4},{4,10,10,4},{4,4,4,4}},
-        {{4,4,4,4},{4,4,4,4},{4,4,4,4},{4,4,4,4}},
-        {{7,4,4,7},{4,2,2,4},{4,2,2,4},{7,4,4,7}}
+        {{2,15,15,2},{15,10,10,15},{15,10,10,15},{2,15,15,2}},
+        {{4,15,15,4},{15,4,4,15},{15,4,4,15},{4,15,15,4}},
+        {{10,4,4,10},{4,2,2,4},{4,2,2,4},{10,4,4,10}}
     };
-    // 2段目角の評価点の変更
-    // 下に自身の手があるときは上に置く
-    if (puzzle[3][0][0] == P2) value[2][0][0] += 10;
-    if (puzzle[3][0][3] == P2) value[2][0][3] += 10;
-    if (puzzle[3][3][0] == P2) value[2][3][0] += 10;
-    if (puzzle[3][3][3] == P2) value[2][3][3] += 10;
 
-    // 3段目角の評価点の変更
-    // 相手がおいたときは阻止する
-    if (puzzle[3][0][0] == P1) value[1][0][0] += 30;
-    if (puzzle[3][0][3] == P1) value[1][0][3] += 30;
-    if (puzzle[3][3][0] == P1) value[1][3][0] += 30;
-    if (puzzle[3][3][3] == P1) value[1][3][3] += 30;
-    // 自分が置いた時も変更
-    if (puzzle[3][0][0] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][0][0] += 30;
-    if (puzzle[3][0][3] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][0][3] += 30;
-    if (puzzle[3][3][0] == P2 && puzzle[3][0][0] == P2 && puzzle[3][3][3] == P2) value[1][3][0] += 30;
-    if (puzzle[3][3][3] == P2 && puzzle[3][0][3] == P2 && puzzle[3][3][0] == P2) value[1][3][3] += 30;
-
-    // クロスアタック対策
-    if (puzzle[3][1][1] == OK) {
-        cnt = 0;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][1][0] == P1) cnt++;
-        if (puzzle[3][1][3] == P1) cnt++;
-        if (puzzle[3][3][1] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 1;
-            *z = 1;
-            return true;
-        }
-    }
-    if (puzzle[3][2][2] == OK) {
-        cnt = 0;
-        if (puzzle[3][0][2] == P1) cnt++;
-        if (puzzle[3][2][0] == P1) cnt++;
-        if (puzzle[3][2][3] == P1) cnt++;
-        if (puzzle[3][3][2] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 2;
-            *z = 2;
-            return true;
-        }
-    }
-    if (puzzle[3][2][1] == OK) {
-        cnt = 0;
-        if (puzzle[3][2][0] == P1) cnt++;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][3][1] == P1) cnt++;
-        if (puzzle[3][2][3] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 2;
-            *z = 1;
-            return true;
-        }
-    }
-    if (puzzle[3][1][2] == OK) {
-        cnt = 0;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][0][1] == P1) cnt++;
-        if (puzzle[3][3][1] == P1) cnt++;
-        if (puzzle[3][1][3] == P1) cnt++;
-        if (cnt >= 1) {
-            *x = 3;
-            *y = 1;
-            *z = 2;
-            return true;
-        }
-    }
-    // 評価値の高い手が見つかった時はそこを返す
     for (i = 3; i >= 0; i--) {
         for (j = 0; j < 4; j++) {
             for (k = 0; k < 4; k++) {
                 if (puzzle[i][j][k] == OK) {
-                    if (value[i][j][k] > max) {
-                        max = value[i][j][k];
+                    puzzle[i][j][k] = P2;
+                    if (i > 0)puzzle[i - 1][j][k] = OK;
+                    if (isReach(puzzle, P1) == 0) {
+                        if (value[i][j][k] > max) {
+                            max = value[i][j][k];
+                            *x = i;
+                            *y = j;
+                            *z = k;
+                            flag = 1;
+                        }
+                    }
+                    puzzle[i][j][k] = OK;
+                    if (i > 0)puzzle[i - 1][j][k] = NG;
+                }
+            }
+        }
+    }
+    // 抜け防止のための処理
+    // flagが0のまま、つまり上の処理で決まっていない時
+    if (flag == 0) {
+        for (i = 3; i >= 0; i--) {
+            for (j = 0; j < 4; j++) {
+                for (k = 0; k < 4; k++) {
+                    if (puzzle[i][j][k] == OK) {
                         *x = i;
                         *y = j;
                         *z = k;
