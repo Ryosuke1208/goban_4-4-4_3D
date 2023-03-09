@@ -9,6 +9,7 @@ int isReach(int[][FIGURE_NUM][FIGURE_NUM], int);
 
 boolean search(int depth, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, int z) {
     int cnt1 = 0, cnt2 = 0;
+    int x2, y2, z2;
     
     // CPU側がビンゴ出来るときはそこで決定
     if (depth == 1) {
@@ -36,16 +37,27 @@ boolean search(int depth, int puzzle[][FIGURE_NUM][FIGURE_NUM], int x, int y, in
         // CPU側がリーチ×2以上になる時はそこで決定
         if (cnt1 == 0 && cnt2 >= 2) return true;
         else return false;
-    }// 相手がリーチになる手を防ぐ
+    }// 相手がリーチになるのを防ぐ
     else if (depth == 4) {
         puzzle[x][y][z] = P1;
         if (x > 0) puzzle[x - 1][y][z] = OK;
         // プレイヤー側がリーチになる数を数える
         cnt1 = isReach(puzzle, P1);
+        puzzle[x][y][z] = P2;
+        cnt2 = isReach(puzzle, P1);
         puzzle[x][y][z] = OK;
         if (x > 0) puzzle[x - 1][y][z] = NG;
-        // プレイヤーがダブルリーチになるのを防ぐ
-        if (cnt1 >= 2) return true;
+        if (cnt1 >= 2 && cnt2 == 0) return true;
+        else return false;
+    }
+    else if (depth == 5) {
+        puzzle[x][y][z] = P2;
+        if (x > 0) puzzle[x - 1][y][z] = OK;
+        // プレイヤー側がリーチになる数を数える
+        findBestMove(3, puzzle, &x2, &y2, &z2);
+        puzzle[x][y][z] = OK;
+        if (x > 0) puzzle[x - 1][y][z] = NG;
+        if (x2 != 4) return true;
         else return false;
     }
     if (cnt1) return true;

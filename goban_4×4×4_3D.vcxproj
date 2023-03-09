@@ -171,6 +171,8 @@
     <ClCompile Include="showFinishedStatus.cpp" />
     <ClCompile Include="showTitle.cpp" />
     <ClCompile Include="showWinner.cpp" />
+    <ClCompile Include="evaluation.cpp" />
+    <ClCompile Include="temp.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

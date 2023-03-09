@@ -10,6 +10,12 @@ void evaluation(int puzzle[][4][4], int value[][4][4], int playerNumber) {
 	int enemyNumber = 0;
 	if (playerNumber == P2) enemyNumber = P1;
 	if (playerNumber == P1) enemyNumber = P2;
+	int cnt;
+	struct TEMP {
+		int XYZ1[3][3];
+
+	};
+	struct TEMP temp;
 
 	for (i = 3; i >= 0; i--) {
 		for (j = 0; j < 4; j++) {
@@ -17,10 +23,20 @@ void evaluation(int puzzle[][4][4], int value[][4][4], int playerNumber) {
 				if (puzzle[i][j][k] == OK) {
 					tempScore = value[i][j][k];
 					// —§‘Ì‚Å‚Ìc
+					cnt = 0;
 					for (x = 0; x < 4; x++) {
 						if (puzzle[x][j][k] == enemyNumber) {
-							tempScore--;
+							cnt++;
+						}
+						if (puzzle[x][j][k] == playerNumber) {
 							break;
+						}
+						if (cnt >= 2) {
+							for (x = 0; x < 4; x++) {
+								temp.XYZ1[0][x] = x;
+								temp.XYZ1[0][x] = x;
+								temp.XYZ1[0][x] = x;
+							}
 						}
 					}
 					// •½–Ê‚Å‚Ìc

@@ -64,6 +64,12 @@
     <ClCompile Include="showBingoLine.cpp">
       <Filter>tools</Filter>
     </ClCompile>
+    <ClCompile Include="evaluation.cpp">
+      <Filter>cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="temp.cpp">
+      <Filter>cpu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="player">

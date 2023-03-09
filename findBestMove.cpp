@@ -3,6 +3,7 @@
 //************************************************
 #include "define.h"
 
+
 boolean search(int, int[][FIGURE_NUM][FIGURE_NUM], int, int, int);
 
 void findBestMove(int depth, int puzzle[][FIGURE_NUM][FIGURE_NUM], int* x, int* y, int* z) {
